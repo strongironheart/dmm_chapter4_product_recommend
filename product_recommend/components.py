@@ -59,8 +59,12 @@ def display_product(result):
 
     # LLMレスポンスのテキストを辞書に変換
     product_lines = result[0].page_content.split("\n")
+#    print(product_lines)
+#    print("--------------")    
     product = {item.split(": ")[0]: item.split(": ")[1] for item in product_lines}
-
+    if '\ufeffid' in product:
+        product['id'] = product.pop('\ufeffid')
+#    print(product)
     st.markdown("以下の商品をご提案いたします。")
 
     # 「商品名」と「価格」
