@@ -15,7 +15,22 @@ AI_ICON_FILE_PATH = "./images/ai_icon.jpg"
 ERROR_ICON = ":material/error:"
 CHAT_INPUT_HELPER_TEXT = "こちらからお探しの商品の特徴や名前を入力してください。"
 SPINNER_TEXT = "レコメンドする商品の検討中..."
+WARNING_ICON = ":material/warning:"
+ERROR_ICON = ":material/error:"
 
+# ==========================================
+# 商品表示系
+# ==========================================
+PROPOSAL_MESSAGE = "以下の商品をご提案いたします。"
+PRODUCT_NAME = "商品名"
+PRODUCT_ID = "商品ID"
+PRICE = "価格"
+STOCK_STATUS_LOW = "残りわずか"
+STOCK_STATUS_OUT_OF_STOCK = "なし"
+STOCK_STATUS_LOW_MESSAGE = "ご好評につき、在庫数が残りわずかです。購入を希望の場合、お早めにご注文をおすすめいたします。"
+STOCK_STATUS_OUT_OF_STOCK_MESSAGE = "申し訳ございませんが、本商品は在庫切れとなっております。入荷までもうしばらくお待ち下さい。"
+RECOMMENDED_PEOPLE = "**こんな方におすすめ！**"
+OPEN_PRODUCTS_PAGE = "商品ページを開く"
 
 # ==========================================
 # ログ出力系

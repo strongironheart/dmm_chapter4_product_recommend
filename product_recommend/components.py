@@ -59,15 +59,29 @@ def display_product(result):
 
     # LLMレスポンスのテキストを辞書に変換
     product_lines = result[0].page_content.split("\n")
+#    print(product_lines)
+#    print("--------------")    
     product = {item.split(": ")[0]: item.split(": ")[1] for item in product_lines}
-
-    st.markdown("以下の商品をご提案いたします。")
+    if '\ufeffid' in product:
+        product['id'] = product.pop('\ufeffid')
+#    print(product)
+    st.markdown(ct.PROPOSAL_MESSAGE)
 
     # 「商品名」と「価格」
     st.success(f"""
-            商品名：{product['name']}（商品ID: {product['id']}）\n
-            価格：{product['price']}
+            {ct.PRODUCT_NAME}: {product['name']}<br>{ct.PRODUCT_ID}: {product['id']}<br>
+            {ct.PRICE}: {product['price']}
     """)
+    # st.success(f"""
+    #         商品名：{product['name']}（商品ID: {product['id']}）\n
+    #         価格：{product['price']}
+    # """)
+
+    # 在庫状況を表示
+    if product.get('stock_status') == ct.STOCK_STATUS_LOW:
+        st.warning(ct.STOCK_STATUS_LOW_MESSAGE,icon=ct.WARNING_ICON)
+    elif product.get('stock_status') == ct.STOCK_STATUS_OUT_OF_STOCK:
+        st.error(ct.STOCK_STATUS_OUT_OF_STOCK_MESSAGE,icon=ct.ERROR_ICON)
 
     # 「商品カテゴリ」と「メーカー」と「ユーザー評価」
     st.code(f"""
@@ -83,8 +97,8 @@ def display_product(result):
     st.code(product['description'], language=None, wrap_lines=True)
 
     # おすすめ対象ユーザー
-    st.markdown("**こんな方におすすめ！**")
+    st.markdown(ct.RECOMMENDED_PEOPLE)
     st.info(product["recommended_people"])
 
     # 商品ページのリンク
-    st.link_button("商品ページを開く", type="primary", use_container_width=True, url="https://google.com")
+    st.link_button(ct.OPEN_PRODUCTS_PAGE, type="primary", use_container_width=True, url="https://google.com")
